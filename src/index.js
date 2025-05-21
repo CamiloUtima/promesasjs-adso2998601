@@ -1,20 +1,28 @@
-function descargarArchivo(){
-    return new Promise((resolve) => {
+function descargarArchivoConError(hayError) {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("promesa ejecutada con éxito después de 8 segundos!");
+            if (hayError) {
+                reject("❌ Error: Hubo un problema al descargar el archivo.");
+            } else {
+                resolve("✅ Promesa ejecutada con éxito después de 8 segundos!");
+            }
         }, 8000);
-    })
+    });
 }
 
-//funcion Async
+// Función Async que llama a la promesa
 async function ejecutar() {
     try {
-        console.log("Promesa ejecutandose...")
-        const respuesta = await descargarArchivo()
-        console.log(respuesta)
+        console.log("⏳ Promesa ejecutándose...");
+        
+        
+        const hayError = true; // Aqui se cambia el valor de esta variable para probar ambos casos
+
+        const respuesta = await descargarArchivoConError(hayError);
+        console.log(respuesta);
     } catch (error) {
-        console.error("❌error al descargar")
+        console.error(error);
     }
 }
 
-ejecutar()
+ejecutar();
