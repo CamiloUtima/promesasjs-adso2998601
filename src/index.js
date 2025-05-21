@@ -8,6 +8,7 @@ function descargarArchivo(){
     })
 }
 
+//funcion Async
 async function ejecutar() {
     try {
         console.log("⏳ Descarga en proceso...")
